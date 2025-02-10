@@ -44,10 +44,10 @@ def main():
     latest_child = latest.find_element(By.TAG_NAME, 'a')
     title = latest_child.text
     url = latest_child.get_attribute('href')
-    st.success(f'Latest result: {place}, {edition}, {title}, {url}')
+    st.success(f'Último resultado:/n{place}/n{edition}/n{title}/n{url}')
     
     # Quit
-    driver.quit()
+    #driver.quit()
 
 
 if __name__ == '__main__':
