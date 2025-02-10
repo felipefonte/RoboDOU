@@ -22,7 +22,7 @@ def main():
     options.add_argument("--headless")
 
     driver = get_driver()
-    driver.get("http://example.com")
+    driver.get("https://www.in.gov.br/leiturajornal")
 
     #with st.echo():
     st.code(driver.page_source)
