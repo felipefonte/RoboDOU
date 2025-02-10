@@ -40,7 +40,7 @@ def main():
     # Get the latest result
     place = driver.find_elements(By.CLASS_NAME, 'hierarchy-item-marker')[1].text
     edition = driver.find_elements(By.CLASS_NAME, 'hierarchy-item-marker')[2].text
-    link = driver.find_elements_by_css_selector("title-marker > a")[0]
+    link = driver.find_elements_by_css_selector(".title-marker > a")[0]
     title = link.text
     url = link.get_attribute('href')
     st.success(f'Latest result: {place}, {edition}, {title}, {url}')
