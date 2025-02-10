@@ -6,6 +6,14 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.os_manager import ChromeType
 from selenium.webdriver.common.by import By
+import pywhatkit as kit
+
+def send_whatsapp(message):
+    # Specify the phone number (with country code) and the message
+    phone_number = st.secrets["PHONE_NUMBER"]
+
+    # Send the message instantly
+    kit.sendwhatmsg_instantly(phone_number, message)
     
 def main():
 
@@ -44,11 +52,10 @@ def main():
     latest_child = latest.find_element(By.TAG_NAME, 'a')
     title = latest_child.text
     url = latest_child.get_attribute('href')
-    st.success(f'Último resultado:/n{place}/n{edition}/n{title}/n{url}')
+    latest_description = f'Último resultado:\n{place}\n{edition}\n{title}\n{url}'
+    st.success(latest_description)
     
-    # Quit
-    #driver.quit()
-
+    send_whatsapp(f'{numberResults}\n\n{latest_description}')
 
 if __name__ == '__main__':
     main()
