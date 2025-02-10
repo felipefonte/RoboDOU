@@ -22,7 +22,12 @@ def main():
     options.add_argument("--headless")
 
     driver = get_driver()
-    driver.get("http://example.com/")
+    
+    # Get searched term from secrets
+    search = st.secrets["SEARCH"]
+    search = search.replace(" ", "+")
+    search = search.upper()
+    driver.get(f'https://www.in.gov.br/consulta/-/buscar/dou?q=%22{search}%22&s=todos&exactDate=all&sortType=0')
 
     #with st.echo():
     st.code(driver.page_source)
