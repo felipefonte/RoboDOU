@@ -6,6 +6,8 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.os_manager import ChromeType
 from selenium.webdriver.common.by import By
+import os
+os.environ['DISPLAY'] = ':0'
 import pywhatkit as kit
 
 def send_whatsapp(message):
@@ -14,6 +16,7 @@ def send_whatsapp(message):
 
     # Send the message instantly
     kit.sendwhatmsg_instantly(phone_number, message)
+    
     
 def main():
 

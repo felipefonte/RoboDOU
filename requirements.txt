@@ -2,3 +2,4 @@ streamlit
 seleniumbase
 webdriver-manager
 pywhatkit
+os
