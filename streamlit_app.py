@@ -38,10 +38,10 @@ def main():
     st.success(f'{numberResults}')
     
     # Get the latest result
-    place = driver.find_elements(By.CLASS_NAME, 'breadcrumb-item hierarchy-item-marker')[1].text
-    edition = driver.find_elements(By.CLASS_NAME, 'breadcrumb-item hierarchy-item-marker')[2].text
-    title = driver.find_elements(By.CLASS_NAME, 'title-marker')[0].text
-    st.success(f'Latest result: {place}, {edition}, {title}')
+    place = driver.find_elements(By.CLASS_NAME, 'breadcrumb-item hierarchy-item-marker')[1]#.text
+    #edition = driver.find_elements(By.CLASS_NAME, 'breadcrumb-item hierarchy-item-marker')[2].text
+    #title = driver.find_elements(By.CLASS_NAME, 'title-marker')[0].text
+    #st.success(f'Latest result: {place}, {edition}, {title}')
     
     # Quit
     driver.quit()
