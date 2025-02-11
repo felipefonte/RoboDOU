@@ -11,8 +11,6 @@ from email.mime.text import MIMEText
 from datetime import date
 
 def send_email(body):
-    # Specify the phone number (with country code) and the message
-    phone_number = st.secrets["PHONE_NUMBER"]
 
     # Taking inputs
     email_sender = st.secrets["EMAIL_SENDER"]
