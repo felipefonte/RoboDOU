@@ -25,7 +25,7 @@ def send_email(body):
         msg['To'] = email_receiver
         msg['Subject'] = subject
 
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP('smtp.mail.yahoo.com', 465)
         server.starttls()
         server.login(email_sender, email_password)
         server.sendmail(email_sender, email_receiver, msg.as_string())
