@@ -1,6 +1,6 @@
 streamlit
 seleniumbase
 webdriver-manager
-pywhatkit
+sendgrid
+Pillow
 datetime
-pyautogui

@@ -6,20 +6,39 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.os_manager import ChromeType
 from selenium.webdriver.common.by import By
-import os
-os.environ['DISPLAY']='localhost:0'
-import datetime
-import pywhatkit as py
+import smtplib
+from email.mime.text import MIMEText
+from datetime import date
 
-def send_whatsapp(message):
+def send_email(body):
     # Specify the phone number (with country code) and the message
     phone_number = st.secrets["PHONE_NUMBER"]
 
-    # Send the message instantly
-    #kit.sendwhatmsg_instantly(phone_number, message)
+    # Taking inputs
+    email_sender = st.secrets["EMAIL_SENDER"]
+    email_password = st.secrets["EMAIL_PASSWORD"]
+    email_receiver = st.secrets["EMAIL_RECEIVER"]
+    subject = "DOU " + str(date.today())
+
+    # Send email
+    try:
+        msg = MIMEText(body)
+        msg['From'] = email_sender
+        msg['To'] = email_receiver
+        msg['Subject'] = subject
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(email_sender, email_password)
+        server.sendmail(email_sender, email_receiver, msg.as_string())
+        server.quit()
+
+        st.success('Email sent successfully! 🚀')
+    except Exception as e:
+        st.error(f"Failed to send email: {e}")
     
     
-def main():
+def get_item_from_dou():
 
     @st.cache_resource
     def get_driver():
@@ -59,17 +78,7 @@ def main():
     latest_description = f'Último resultado:\n{place}\n{edition}\n{title}\n{url}'
     st.success(latest_description)
     
-    #send_whatsapp(f'{numberResults}\n\n{latest_description}')
-
-    phonelist = st.text_input("Please input numbers you want to automate with seperated by ,")
-    message = st.text_area("Enter your Message")
-    submit = st.button("Enter")
-
-    if submit:
-        phones = phonelist.split(',')
-        for phone in phones:
-            py.sendwhatmsg("+55"+phone,message,time.hour,(time.minute+i),10)
-            st.success("Message Sent!")
+    send_email(f'{numberResults}\n\n{latest_description}')
 
 if __name__ == '__main__':
-    main()
+    get_item_from_dou()
