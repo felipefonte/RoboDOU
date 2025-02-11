@@ -3,3 +3,4 @@ seleniumbase
 webdriver-manager
 pywhatkit
 datetime
+pyautogui
