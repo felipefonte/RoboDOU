@@ -25,7 +25,7 @@ def send_email(body):
         msg['To'] = email_receiver
         msg['Subject'] = subject
         
-        server = smtplib.SMTP(st.secrets["EMAIL_SMTP"], st.secrets["EMAIL_PORT"])
+        server = smtplib.SMTP_SSL(st.secrets["EMAIL_SMTP"], st.secrets["EMAIL_PORT"])
         server.ehlo()
         server.starttls()
         server.ehlo()
