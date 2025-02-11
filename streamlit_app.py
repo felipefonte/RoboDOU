@@ -6,16 +6,17 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.os_manager import ChromeType
 from selenium.webdriver.common.by import By
-import os
-os.environ['DISPLAY']='localhost:0'
-import pywhatkit as kit
+#import os
+#os.environ['DISPLAY']='localhost:0'
+import datetime
+import pywhatkit as py
 
 def send_whatsapp(message):
     # Specify the phone number (with country code) and the message
     phone_number = st.secrets["PHONE_NUMBER"]
 
     # Send the message instantly
-    kit.sendwhatmsg_instantly(phone_number, message)
+    #kit.sendwhatmsg_instantly(phone_number, message)
     
     
 def main():
@@ -58,7 +59,17 @@ def main():
     latest_description = f'Último resultado:\n{place}\n{edition}\n{title}\n{url}'
     st.success(latest_description)
     
-    send_whatsapp(f'{numberResults}\n\n{latest_description}')
+    #send_whatsapp(f'{numberResults}\n\n{latest_description}')
+
+    phonelist = st.text_input("Please input numbers you want to automate with seperated by ,")
+    message = st.text_area("Enter your Message")
+    submit = st.button("Enter")
+
+    if submit:
+        phones = phonelist.split(',')
+        for phone in phones:
+            py.sendwhatmsg("+55"+phone,message,time.hour,(time.minute+i),10)
+            st.success("Message Sent!")
 
 if __name__ == '__main__':
     main()
