@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.os_manager import ChromeType
 from selenium.webdriver.common.by import By
-import smtplib, ssl
+import smtplib
 from email.mime.text import MIMEText
 from datetime import date
 
@@ -25,11 +25,10 @@ def send_email(body):
         msg['To'] = email_receiver
         msg['Subject'] = subject
         
-        server = smtplib.SMTP(st.secrets["EMAIL_SMTP"], st.secrets["EMAIL_PORT"])
-        context = ssl.create_default_context()
-        server.ehlo()
-        server.starttls(context=context)
-        server.ehlo()
+        server = smtplib.SMTP_SSL(st.secrets["EMAIL_SMTP"], st.secrets["EMAIL_PORT"])
+        #server.ehlo()
+        #server.starttls()
+        #server.ehlo()
         server.login(email_sender, email_password)
         server.sendmail(email_sender, email_receiver, msg.as_string())
         server.quit()
