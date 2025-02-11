@@ -26,9 +26,9 @@ def send_email(body):
         msg['Subject'] = subject
         
         server = smtplib.SMTP('smtp.live.com', 587)
-        #server.ehlo()
+        server.ehlo()
         server.starttls()
-        #server.ehlo()
+        server.ehlo()
         server.login(email_sender, email_password)
         server.sendmail(email_sender, email_receiver, msg.as_string())
         server.quit()
