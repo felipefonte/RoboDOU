@@ -40,7 +40,7 @@ def send_email(body):
     
 def get_item_from_dou():
 
-    @st.cache_resource
+    #@st.cache_resource
     def get_driver():
         return webdriver.Chrome(
             service=Service(
