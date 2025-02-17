@@ -80,7 +80,7 @@ def get_item_from_dou():
         st.success(latest_description)
 
         # Send email
-        send_email(f'{numberResults}\n\n{latest_description}')
+        # send_email(f'{numberResults}\n\n{latest_description}')
     except Exception as e:
         st.error(f"Failed to read DOU: {e}")
 
